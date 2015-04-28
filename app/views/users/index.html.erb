@@ -1,3 +1,7 @@
-<%= link_to "action1", url_for([:users, :action1, :format => :json]) %>
-<%= link_to "action2", url_for([:users, :action2, :format => :json]) %>
-<%= link_to "action3", url_for([:users, :action3, :format => :json]) %>
+<%= link_to "action1 (jbuilder view)", url_for([:users, :action1, :format => :json]) %>
+<%= link_to "action2 (RABL view)", url_for([:users, :action2, :format => :json]) %>
+<%= link_to "action3 (Grape)", "/api/action3" %>
+<%= link_to "action4 (Grape with namespace)", "/api/sub_ns/action4" %>
+<%= link_to "action5 (Grape PUT)", "/api/action5", :method => :put %>
+<%= link_to "action6 (Grape DELETE)", "/api/action6", :method => :delete %>
+

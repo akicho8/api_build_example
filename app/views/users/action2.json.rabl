@@ -1,7 +1,5 @@
-object false
-child(@user => :result) do
-  attribute :id
-  child :foo do
-    1
-  end
+collection @users, :root => :result, :object_root => false
+attribute :id, :name
+node(:foo) do |user|
+  user.id
 end
