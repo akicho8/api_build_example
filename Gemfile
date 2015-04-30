@@ -51,3 +51,4 @@ end
 gem "rabl"
 gem "oj"
 gem "grape"
+gem "grape-rabl"

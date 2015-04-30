@@ -1,6 +1,8 @@
 class MyApi < Grape::API
   # version 'v1', using: :header, vendor: 'twitter' # ？
   format :json
+  formatter :json, Grape::Formatter::Rabl
+
   prefix :api
 
   helpers do
@@ -21,8 +23,12 @@ class MyApi < Grape::API
   # curl http://localhost:3000/api/action3
   desc "コメント"
   get :action3 do
-    Rails.logger.debug ["#{__FILE__}:#{__LINE__}", __method__, :action3]
     "(action3)"
+  end
+
+  # curl http://localhost:3000/api/action7
+  desc "コメント"
+  get :action7, :rabl => "my_api/action7" do
   end
 
   # curl -X PUT -d foo http://localhost:3000/api/action5
