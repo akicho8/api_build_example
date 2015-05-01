@@ -1,4 +1,4 @@
-class MyApi < Grape::API
+class MyApiBase < Grape::API
   # version 'v1', using: :header, vendor: 'twitter' # ？
   format :json
   formatter :json, Grape::Formatter::Rabl
@@ -64,10 +64,16 @@ class MyApi < Grape::API
   end
 end
 
-# class MyApi < MyApi0
-#   # curl http://localhost:3000/api/action3
-#   desc "コメント"
-#   get :action3 do
-#     "(action3) #{helper_method1}"
-#   end
-# end
+class MyApi < Grape::API
+  # format :json
+  # formatter :json, Grape::Formatter::Rabl
+  prefix :api
+
+  # curl http://localhost:3000/api/action3
+  desc "コメント"
+  get :action3 do
+    "action3を上書き"
+  end
+
+  mount MyApiBase
+end
