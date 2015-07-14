@@ -51,4 +51,4 @@ end
 gem "rabl"
 gem "oj"
 gem "grape"
-gem "grape-rabl"
+gem "grape-rabl", :require => "grape/rabl"
