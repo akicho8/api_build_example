@@ -1,14 +1,43 @@
-= link_to "action1 (jbuilder view)", url_for([:users, :action1, :format => :json])
-= tag(:br)
-= link_to "action2 (RABL view)", url_for([:users, :action2, :format => :json])
-= tag(:br)
-= link_to "action3 (Grape)", "/api/action3"
-= tag(:br)
-= link_to "action4 (Grape with namespace)", "/api/sub_ns/action4"
-= tag(:br)
-= link_to "action5 (Grape PUT)", "/api/action5", :method => :put
-= tag(:br)
-= link_to "action6 (Grape DELETE)", "/api/action6", :method => :delete
-= tag(:br)
-= link_to "action7 (Grape + RABL)", "/api/action7"
-= tag(:br)
+table.table.table-hover
+  thead
+    tr
+      td= "アクション"
+      td= "Format"
+      td= "Method"
+      td= "テスト内容"
+  tbody
+    tr
+      td= link_to nil, url_for([:users, :action1, :format => :json])
+      td= "json"
+      td= "GET"
+      td= "action1.json.jbuilder で返せる"
+    tr
+      td= link_to nil, url_for([:users, :action2, :format => :json])
+      td= "json"
+      td= "GET"
+      td= "action2.json.rabl で返せる"
+    tr
+      td= link_to nil, "/api/action3"
+      td= "json"
+      td= "GET"
+      td= "Grape の機能で既存APIを上書きできる"
+    tr
+      td= link_to nil, "/api/subapi/action4"
+      td= "json"
+      td= "GET"
+      td= "Grape の機能でネームスペースが作れる"
+    tr
+      td= link_to nil, "/api/action5", :method => :put
+      td= "json"
+      td= "PUT"
+      td= "Grape の機能で PUT の API が作れる"
+    tr
+      td= link_to nil, "/api/action6", :method => :delete
+      td= "json"
+      td= "DELETE"
+      td= "Grape の機能で DELETE の API が作れる"
+    tr
+      td= link_to nil, "/api/action7"
+      td= "json"
+      td= "GET"
+      td= "Grape + Rabl を使って action7.rabl のビューで返す"

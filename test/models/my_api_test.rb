@@ -4,7 +4,7 @@ class MyApiTest < ActiveSupport::TestCase
   include Rack::Test::Methods
 
   def app
-    MyApi
+    MyApi2
   end
 
   test "action3" do
@@ -14,7 +14,7 @@ class MyApiTest < ActiveSupport::TestCase
   end
 
   test "action4" do
-    get "/api/sub_ns/action4"
+    get "/api/subapi/action4"
     assert last_response.ok?
   end
 

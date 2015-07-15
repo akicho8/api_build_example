@@ -1,4 +1,4 @@
-class MyApiBase < Grape::API
+class MyApi1 < Grape::API
   # version 'v1', using: :header, vendor: 'twitter' # ？
   format :json
   formatter :json, Grape::Formatter::Rabl
@@ -23,7 +23,7 @@ class MyApiBase < Grape::API
   # curl http://localhost:3000/api/action3
   desc "コメント"
   get :action3 do
-    "(action3)"
+    {:foo => "(これは表示されない)"}
   end
 
   # curl http://localhost:3000/api/action7
@@ -34,46 +34,32 @@ class MyApiBase < Grape::API
   # curl -X PUT -d foo http://localhost:3000/api/action5
   desc "コメント"
   put :action5 do
-    "(action5)"
+    {method_name => params}
   end
 
   # curl -X PUT -d foo http://localhost:3000/api/action6
   desc "コメント"
   delete :action6 do
-    "(action6)"
+    {method_name => params}
   end
 
-  resource :sub_ns do
-    # curl http://localhost:3000/api/sub_ns/action4
+  resource :subapi do
+    # curl http://localhost:3000/api/subapi/action4
     desc "ネームスペース付き."
     get :action4 do
-      "(action4)"
+      {method_name => params}
     end
 
-    # curl http://localhost:3000/api/sub_ns/1
-    # curl http://localhost:3000/api/sub_ns/x           {"error":"id is invalid"}
+    # curl http://localhost:3000/api/subapi/1
+    # curl http://localhost:3000/api/subapi/x           {"error":"id is invalid"}
     desc "Return a status."
     params do
       requires :id, type: Integer, desc: "User id."
     end
     route_param :id do
       get do
-        params
+        {method_name => params}
       end
     end
   end
-end
-
-class MyApi < Grape::API
-  # format :json
-  # formatter :json, Grape::Formatter::Rabl
-  prefix :api
-
-  # curl http://localhost:3000/api/action3
-  desc "コメント"
-  get :action3 do
-    "action3を上書き"
-  end
-
-  mount MyApiBase
 end
