@@ -1,3 +1,18 @@
+GIT
+  remote: git://github.com/akicho8/rain_table.git
+  revision: ae12d58d296cf9bb8e1872c5e96e5ba5b27605de
+  specs:
+    rain_table (0.1.8)
+      activesupport
+
+GIT
+  remote: git://github.com/akicho8/static_record.git
+  revision: 2f3fb0c67657c3d6867b381fd595005b9ecd5a14
+  specs:
+    static_record (0.0.13)
+      activemodel
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -122,6 +137,8 @@ GEM
     pry-byebug (3.1.0)
       byebug (~> 4.0)
       pry (~> 0.10)
+    puma (2.11.3)
+      rack (>= 1.1, < 2.0)
     rabl (0.11.6)
       activesupport (>= 2.3.14)
     rack (1.6.4)
@@ -248,13 +265,16 @@ DEPENDENCIES
   jquery-rails
   oj
   pry-byebug
+  puma
   rabl
   rails (= 4.2.1)
+  rain_table!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   slim-rails
   spring
   sqlite3
+  static_record!
   test-unit-rails
   turbolinks
   twitter-bootstrap-rails

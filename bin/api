@@ -1,0 +1,31 @@
+#!rails runner
+rows = ApiList.collect do |elem|
+  puts elem.ret_body_command
+
+  {}.tap do |h|
+    h[:url] = elem.url.sub("http://localhost:3000/", "")
+    h[:format] = elem.format
+    h[:method] = elem.url_method
+    h[:code] = elem.ret_http_code
+    h["-I"] = elem.ret_head_status
+    h[:content_type] = elem.ret_content_type
+    body = elem.ret_body
+    h[:size] = body.size
+
+    body_type = "?"
+    begin
+      JSON.parse(body)
+      body_type = "json"
+    rescue JSON::ParserError
+      begin
+        if body.match(/[^[:print:]]+/)
+          body_type = "msgpack"
+        end
+      rescue ArgumentError
+        body_type = "msgpack"
+      end
+    end
+    h[:body] = body_type
+  end
+end
+tt rows

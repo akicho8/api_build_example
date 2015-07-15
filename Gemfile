@@ -48,6 +48,10 @@ group :test do
   gem "test-unit-rails"
 end
 
+gem "static_record", :github => "akicho8/static_record"
+gem "rain_table", :github => "akicho8/rain_table"
+gem "puma"
+
 gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem "rabl"

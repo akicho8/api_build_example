@@ -6,51 +6,66 @@ table.table.table-hover
       td= "Method"
       td= "テスト内容"
   tbody
-    tr
-      td= link_to nil, url_for([:users, :action1, :format => :json])
-      td= "json"
-      td= "GET"
-      td= "action1.json.jbuilder で返せる"
-    tr
-      td= link_to nil, url_for([:users, :action2, :format => :json])
-      td= "json"
-      td= "GET"
-      td= "action2.json.rabl で返せる"
-    tr
-      td= link_to nil, "/api/action3"
-      td= "json"
-      td= "GET"
-      td= "Grape の機能で既存APIを上書きできる"
-    tr
-      td= link_to nil, "/api/hello"
-      td= "json"
-      td= "GET"
-      td= "Grape の機能だけで返す"
-    tr
-      td= link_to nil, "/api/subapi/action4"
-      td= "json"
-      td= "GET"
-      td= "Grape の機能でネームスペースが作れる"
-    tr
-      td= link_to nil, "/api/action5", :method => :put
-      td= "json"
-      td= "PUT"
-      td= "Grape の機能で PUT の API が作れる"
-    tr
-      td= link_to nil, "/api/action6", :method => :delete
-      td= "json"
-      td= "DELETE"
-      td= "Grape の機能で DELETE の API が作れる"
-    tr
-      td= link_to nil, "/api/action7"
-      td= "json"
-      td= "GET"
-      td= "Grape + Rabl を使って action7.rabl のビューで返す"
-    tr
-      td= link_to nil, "/api/action8"
-      td= "msgpack"
-      td= "GET"
-      td= "Grape + Msgpack で返す"
+    - ApiList.each do |elem|
+      tr
+        td= link_to(nil, elem.url, :method => elem.url_method)
+        td= elem.format
+        td= elem.url_method
+        td= elem.desc
+
+/ table.table.table-hover
+/   thead
+/     tr
+/       td= "アクション"
+/       td= "Format"
+/       td= "Method"
+/       td= "テスト内容"
+/   tbody
+/     tr
+/       td= link_to nil, url_for([:users, :action1, :format => :json])
+/       td= "json"
+/       td= "GET"
+/       td= "action1.json.jbuilder で返せる"
+/     tr
+/       td= link_to nil, url_for([:users, :action2, :format => :json])
+/       td= "json"
+/       td= "GET"
+/       td= "action2.json.rabl で返せる"
+/     tr
+/       td= link_to nil, "/api/action3"
+/       td= "json"
+/       td= "GET"
+/       td= "Grape の機能で既存APIを上書きできる"
+/     tr
+/       td= link_to nil, "/api/hello"
+/       td= "json"
+/       td= "GET"
+/       td= "Grape の機能だけで返す"
+/     tr
+/       td= link_to nil, "/api/subapi/action4"
+/       td= "json"
+/       td= "GET"
+/       td= "Grape の機能でネームスペースが作れる"
+/     tr
+/       td= link_to nil, "/api/action5", :method => :put
+/       td= "json"
+/       td= "PUT"
+/       td= "Grape の機能で PUT の API が作れる"
+/     tr
+/       td= link_to nil, "/api/action6", :method => :delete
+/       td= "json"
+/       td= "DELETE"
+/       td= "Grape の機能で DELETE の API が作れる"
+/     tr
+/       td= link_to nil, "/api/action7"
+/       td= "json"
+/       td= "GET"
+/       td= "Grape + Rabl を使って action7.rabl のビューで返す"
+/     tr
+/       td= link_to nil, "/api/action8"
+/       td= "msgpack"
+/       td= "GET"
+/       td= "Grape + Msgpack で返す"
 
 strong= "Grape::ContentTypes::CONTENT_TYPES"
 = debug Grape::ContentTypes::CONTENT_TYPES

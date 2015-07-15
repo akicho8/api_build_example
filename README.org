@@ -8,4 +8,5 @@ $ setup
 $ rake test
 $ rails s
 $ open http://localhost:3000/
+$ bin/api
 #+END_EXAMPLE
