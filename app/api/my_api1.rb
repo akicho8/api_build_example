@@ -3,6 +3,9 @@ class MyApi1 < Grape::API
   format :json
   formatter :json, Grape::Formatter::Rabl
 
+  content_type :msgpack, 'application/x-msgpack'
+  default_format :msgpack
+
   prefix :api
 
   helpers do
@@ -19,6 +22,12 @@ class MyApi1 < Grape::API
   # before_validation { Rails.logger.debug ["#{__FILE__}:#{__LINE__}", __method__, :before_validation] }
   # after_validation  { Rails.logger.debug ["#{__FILE__}:#{__LINE__}", __method__, :after_validation] }
   # after             { Rails.logger.debug ["#{__FILE__}:#{__LINE__}", __method__, :after] }
+
+  # curl http://localhost:3000/api/hello
+  desc "コメント"
+  get :hello do
+    {method_name => params}
+  end
 
   # curl http://localhost:3000/api/action3
   desc "コメント"
@@ -41,6 +50,14 @@ class MyApi1 < Grape::API
   desc "コメント"
   delete :action6 do
     {method_name => params}
+  end
+
+  # curl -X GET -H "Content-Type: application/x-msgpack" http://localhost:3000/api/action8
+  # content_type 'application/x-msgpack'
+  # raise Grape::ContentTypes::CONTENT_TYPES[:msgpack].inspect
+  get :action8 do
+    env['api.format'] = :msgpack
+    {method_name => params, "api.format" => env['api.format']}
   end
 
   resource :subapi do

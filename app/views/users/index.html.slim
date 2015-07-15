@@ -22,6 +22,11 @@ table.table.table-hover
       td= "GET"
       td= "Grape の機能で既存APIを上書きできる"
     tr
+      td= link_to nil, "/api/hello"
+      td= "json"
+      td= "GET"
+      td= "Grape の機能だけで返す"
+    tr
       td= link_to nil, "/api/subapi/action4"
       td= "json"
       td= "GET"
@@ -41,3 +46,11 @@ table.table.table-hover
       td= "json"
       td= "GET"
       td= "Grape + Rabl を使って action7.rabl のビューで返す"
+    tr
+      td= link_to nil, "/api/action8"
+      td= "msgpack"
+      td= "GET"
+      td= "Grape + Msgpack で返す"
+
+strong= "Grape::ContentTypes::CONTENT_TYPES"
+= debug Grape::ContentTypes::CONTENT_TYPES
