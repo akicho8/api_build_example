@@ -48,6 +48,7 @@ group :test do
   gem "test-unit-rails"
 end
 
+gem "slim-rails"
 gem "rabl"
 gem "oj"
 gem "grape"
