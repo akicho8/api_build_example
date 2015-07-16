@@ -6,26 +6,29 @@ rows = ApiList.collect do |elem|
     h[:url] = elem.url.sub("http://localhost:3000/", "")
     h[:format] = elem.format
     h[:method] = elem.url_method
-    h[:code] = elem.ret_http_code
-    h["-I"] = elem.ret_head_status
+    h["RET"] = elem.ret_http_code
+    h["HEAD"] = elem.ret_head_status
     h[:content_type] = elem.ret_content_type
     body = elem.ret_body
     h[:size] = body.size
 
-    body_type = "?"
-    begin
-      JSON.parse(body)
-      body_type = "json"
-    rescue JSON::ParserError
+    magic = "?"
+    [
+      [:json,    -> e { JSON.parse(e) }, JSON::ParserError],
+      [:xml,     -> e { e.match(/\A\<\?xml/) }, StandardError],
+      [:msgpack, -> e { e.match(/[^[:print:]]+/) }, StandardError],
+    ].each do |key, parser, error|
       begin
-        if body.match(/[^[:print:]]+/)
-          body_type = "msgpack"
+        if parser.call(body)
+          magic = key
+          break
         end
-      rescue ArgumentError
-        body_type = "msgpack"
+      rescue error
       end
     end
-    h[:body] = body_type
+    h[:body] = magic
+
+    h[:desc] = elem.desc
   end
 end
 tt rows

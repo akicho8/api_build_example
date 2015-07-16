@@ -51,6 +51,7 @@ end
 gem "static_record", :github => "akicho8/static_record"
 gem "rain_table", :github => "akicho8/rain_table"
 gem "puma"
+gem "content-type"
 
 gem "twitter-bootstrap-rails"
 gem "slim-rails"

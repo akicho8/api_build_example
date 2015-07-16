@@ -4,7 +4,7 @@ class MyApiTest < ActiveSupport::TestCase
   include Rack::Test::Methods
 
   def app
-    MyApi2
+    MyApi
   end
 
   test "action3" do
@@ -13,18 +13,18 @@ class MyApiTest < ActiveSupport::TestCase
     # p last_response.body
   end
 
-  test "action4" do
-    get "/api/subapi/action4"
+  test "hello" do
+    get "/api/sub/hello"
     assert last_response.ok?
   end
 
-  test "action5" do
-    put "/api/action5"
+  test "put_action" do
+    put "/api/put_action"
     assert last_response.ok?
   end
 
-  test "action6" do
-    delete "/api/action6"
+  test "delete_action" do
+    delete "/api/delete_action"
     assert last_response.ok?
   end
 end

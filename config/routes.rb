@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get "users/action2" => "users#action2"
   get "users/action1" => "users#action1"
 
-  mount MyApi2 => '/'
+  mount MyApi => '/'
 end
