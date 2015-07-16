@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/LTe/grape-rabl.git
+  revision: 94de02b398561b77e9e3db4fb554080bf80d05ff
+  specs:
+    grape-rabl (0.4.1)
+      grape
+      i18n
+      rabl
+      tilt
+
+GIT
   remote: git://github.com/akicho8/grape-msgpack.git
   revision: 64d23aa1f4025a932d7133444768d759d7211668
   specs:
@@ -104,11 +114,6 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
-    grape-rabl (0.4.0)
-      grape
-      i18n
-      rabl
-      tilt
     hashie (3.4.2)
     i18n (0.7.0)
     ice_nine (0.11.1)
@@ -264,7 +269,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   grape
   grape-msgpack!
-  grape-rabl
+  grape-rabl!
   jbuilder (~> 2.0)
   jquery-rails
   oj
