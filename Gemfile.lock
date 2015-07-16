@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/akicho8/grape-msgpack.git
+  revision: 64d23aa1f4025a932d7133444768d759d7211668
+  specs:
+    grape-msgpack (0.1.2)
+      grape (>= 0.6.0)
+      msgpack
+
+GIT
   remote: git://github.com/akicho8/rain_table.git
   revision: ae12d58d296cf9bb8e1872c5e96e5ba5b27605de
   specs:
@@ -96,9 +104,6 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
-    grape-msgpack (0.1.2)
-      grape (>= 0.6.0)
-      msgpack (~> 0.5.6)
     grape-rabl (0.4.0)
       grape
       i18n
@@ -123,7 +128,7 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
-    msgpack (0.5.12)
+    msgpack (0.6.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     nokogiri (1.6.6.2)
@@ -258,7 +263,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   grape
-  grape-msgpack
+  grape-msgpack!
   grape-rabl
   jbuilder (~> 2.0)
   jquery-rails
