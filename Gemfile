@@ -57,5 +57,6 @@ gem "slim-rails"
 gem "rabl"
 gem "oj"
 gem "grape"
-gem "grape-rabl", :github => "LTe/grape-rabl"
+# gem "grape-rabl", :github => "LTe/grape-rabl"
+gem 'grape-rabl', github: 'chrisbloom7/grape-rabl', branch: 'patch-1'
 gem "grape-msgpack", :github => "akicho8/grape-msgpack"
