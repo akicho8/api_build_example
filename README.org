@@ -1,12 +1,25 @@
 #+OPTIONS: toc:nil num:nil author:nil creator:nil \n:nil |:t
 #+OPTIONS: @:t ::t ^:t -:t f:t *:t <:t
 
-* 動かし方
+* 実行方法
 
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC shell
 $ setup
 $ rake test
 $ rails s
 $ open http://localhost:3000/
-$ bin/api
-#+END_EXAMPLE
+$ api
++---------------------+---------+--------+------+-----+---------------------------------+------+---------+
+| url                 | format  | method | code | -I  | content_type                    | size | body    |
++---------------------+---------+--------+------+-----+---------------------------------+------+---------+
+| /users/action1.json | json    | GET    |  200 | 404 | application/json; charset=utf-8 |   47 | json    |
+| /users/action2.json | json    | GET    |  200 | 404 | application/json; charset=utf-8 |   74 | json    |
+| /api/action3        | json    | GET    |  200 | 200 | application/json                |   20 | json    |
+| /api/hello          | json    | GET    |  200 | 200 | application/json                |   19 | json    |
+| /api/subapi/action4 | json    | GET    |  200 | 200 | application/json                |   27 | json    |
+| /api/action5        | json    | PUT    |  200 | 405 | application/json                |   21 | json    |
+| /api/action6        | json    | DELETE |  200 | 405 | application/json                |   24 | json    |
+| /api/action7        | json    | GET    |  200 | 200 | application/json                |   74 | json    |
+| /api/action8        | msgpack | GET    |  200 | 200 | application/x-msgpack           |   36 | msgpack |
++---------------------+---------+--------+------+-----+---------------------------------+------+---------+
+#+END_SRC
