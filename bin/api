@@ -13,22 +13,22 @@ rows = ApiList.collect do |elem|
     h[:size] = body.size
 
     magic = "?"
-    [
-      [:json,    -> e { JSON.parse(e) }, JSON::ParserError],
-      [:xml,     -> e { e.match(/\A\<\?xml/) }, StandardError],
-      [:msgpack, -> e { e.match(/[^[:print:]]+/) }, StandardError],
-    ].each do |key, parser, error|
+    {
+      :json    => -> e { JSON.parse(e)          },
+      :xml     => -> e { e.start_with?("<?xml") },
+      :msgpack => -> e { MessagePack.unpack(e)  },
+    }.each do |key, parser, error|
       begin
         if parser.call(body)
           magic = key
           break
         end
-      rescue error
+      rescue
       end
     end
-    h[:body] = magic
+    h["実際"] = magic
 
-    h[:desc] = elem.desc
+    h["備考"] = elem.desc
   end
 end
 tt rows

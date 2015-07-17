@@ -8,21 +8,21 @@
 : $ rails s
 : $ open http://localhost:3000/
 : $ api
-: +-------------------------+---------+--------+-----+------+--------------+------+------+------------------------------------------------+
-: | url                     | format  | method | RET | HEAD | content_type | size | body | desc                                           |
-: +-------------------------+---------+--------+-----+------+--------------+------+------+------------------------------------------------+
-: | /users/action1.json     | json    | GET    | 200 |  404 | json         |   47 | json | Rails のみ, action1.json.jbuilder, Grape未使用 |
-: | /users/action2.json     | json    | GET    | 200 |  404 | json         |   74 | json | action2.json.rabl, Grape未使用, rablだけ利用   |
-: | /api/get_action         |         | GET    | 200 |  200 | x-msgpack    |   38 | ?    | Grape (default_format)                         |
-: | /api/get_action.xml     | xml     | GET    | 200 |  200 | xml          |  167 | xml  | Grape .xml                                     |
-: | /api/get_action.txt     | txt     | GET    | 200 |  200 | plain        |   70 | ?    | Grape .txt                                     |
-: | /api/get_action.json    | json    | GET    | 200 |  200 | json         |   58 | json | Grape .json                                    |
-: | /api/get_action.msgpack | msgpack | GET    | 200 |  200 | x-msgpack    |   53 | ?    | Grape .msgpack                                 |
-: | /api/put_action         |         | PUT    | 200 |  405 | x-msgpack    |   38 | ?    | Grape で PUT                                   |
-: | /api/delete_action      |         | DELETE | 200 |  405 | x-msgpack    |   44 | ?    | Grape で DELETE                                |
-: | /api/force_msgpack_rabl | msgpack | GET    | 200 |  200 | x-msgpack    |  123 | ?    | Grape + msgpack + rabl                         |
-: | /api/force_json_rabl    | json    | GET    | 200 |  200 | json         |  128 | json | Grape + json + rabl                            |
-: | /api/force_msgpack      | msgpack | GET    | 200 |  200 | x-msgpack    |   41 | ?    | Grape + msgpack                                |
-: | /api/force_json         | json    | GET    | 200 |  200 | json         |   43 | json | Grape + json                                   |
-: | /api/sub/hello          |         | GET    | 200 |  200 | x-msgpack    |   36 | ?    | Grape + namespace                              |
-: +-------------------------+---------+--------+-----+------+--------------+------+------+------------------------------------------------+
+: +-------------------------+---------+--------+-----+------+--------------+------+---------+------------------------------------------------+
+: | url                     | format  | method | RET | HEAD | content_type | size | 実際    | 備考                                           |
+: +-------------------------+---------+--------+-----+------+--------------+------+---------+------------------------------------------------+
+: | /users/action1.json     | json    | GET    | 200 |  404 | json         |   47 | json    | Rails のみ, action1.json.jbuilder, Grape未使用 |
+: | /users/action2.json     | json    | GET    | 200 |  404 | json         |   74 | json    | action2.json.rabl, Grape未使用, rablだけ利用   |
+: | /api/get_action         |         | GET    | 200 |  200 | x-msgpack    |   38 | msgpack | Grape (default_format)                         |
+: | /api/get_action.xml     | xml     | GET    | 200 |  200 | xml          |  167 | xml     | Grape .xml                                     |
+: | /api/get_action.txt     | txt     | GET    | 200 |  200 | plain        |   70 | ?       | Grape .txt                                     |
+: | /api/get_action.json    | json    | GET    | 200 |  200 | json         |   58 | json    | Grape .json                                    |
+: | /api/get_action.msgpack | msgpack | GET    | 200 |  200 | x-msgpack    |   53 | msgpack | Grape .msgpack                                 |
+: | /api/put_action         |         | PUT    | 200 |  405 | x-msgpack    |   38 | msgpack | Grape で PUT                                   |
+: | /api/delete_action      |         | DELETE | 200 |  405 | x-msgpack    |   44 | msgpack | Grape で DELETE                                |
+: | /api/force_msgpack_rabl | msgpack | GET    | 200 |  200 | x-msgpack    |  123 | msgpack | Grape + msgpack + rabl                         |
+: | /api/force_json_rabl    | json    | GET    | 200 |  200 | json         |  128 | json    | Grape + json + rabl                            |
+: | /api/force_msgpack      | msgpack | GET    | 200 |  200 | x-msgpack    |   41 | msgpack | Grape + msgpack                                |
+: | /api/force_json         | json    | GET    | 200 |  200 | json         |   43 | json    | Grape + json                                   |
+: | /api/sub/hello          |         | GET    | 200 |  200 | x-msgpack    |   36 | msgpack | Grape + namespace                              |
+: +-------------------------+---------+--------+-----+------+--------------+------+---------+------------------------------------------------+
