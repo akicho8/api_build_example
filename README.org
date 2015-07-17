@@ -3,23 +3,26 @@
 
 * 実行方法
 
-#+BEGIN_SRC shell
-$ setup
-$ rake test
-$ rails s
-$ open http://localhost:3000/
-$ api
-+---------------------+---------+--------+------+-----+---------------------------------+------+---------+
-| url                 | format  | method | code | -I  | content_type                    | size | body    |
-+---------------------+---------+--------+------+-----+---------------------------------+------+---------+
-| /users/action1.json | json    | GET    |  200 | 404 | application/json; charset=utf-8 |   47 | json    |
-| /users/action2.json | json    | GET    |  200 | 404 | application/json; charset=utf-8 |   74 | json    |
-| /api/action3        | json    | GET    |  200 | 200 | application/json                |   20 | json    |
-| /api/get_action          | json    | GET    |  200 | 200 | application/json                |   19 | json    |
-| /api/sub/hello | json    | GET    |  200 | 200 | application/json                |   27 | json    |
-| /api/put_action        | json    | PUT    |  200 | 405 | application/json                |   21 | json    |
-| /api/delete_action        | json    | DELETE |  200 | 405 | application/json                |   24 | json    |
-| /api/force_msgpack_rabl        | json    | GET    |  200 | 200 | application/json                |   74 | json    |
-| /api/force_msgpack        | msgpack | GET    |  200 | 200 | application/x-msgpack           |   36 | msgpack |
-+---------------------+---------+--------+------+-----+---------------------------------+------+---------+
-#+END_SRC
+: $ setup
+: $ rake test
+: $ rails s
+: $ open http://localhost:3000/
+: $ api
+: +-------------------------+---------+--------+-----+------+--------------+------+------+------------------------------------------------+
+: | url                     | format  | method | RET | HEAD | content_type | size | body | desc                                           |
+: +-------------------------+---------+--------+-----+------+--------------+------+------+------------------------------------------------+
+: | /users/action1.json     | json    | GET    | 200 |  404 | json         |   47 | json | Rails のみ, action1.json.jbuilder, Grape未使用 |
+: | /users/action2.json     | json    | GET    | 200 |  404 | json         |   74 | json | action2.json.rabl, Grape未使用, rablだけ利用   |
+: | /api/get_action         |         | GET    | 200 |  200 | x-msgpack    |   38 | ?    | Grape (default_format)                         |
+: | /api/get_action.xml     | xml     | GET    | 200 |  200 | xml          |  167 | xml  | Grape .xml                                     |
+: | /api/get_action.txt     | txt     | GET    | 200 |  200 | plain        |   70 | ?    | Grape .txt                                     |
+: | /api/get_action.json    | json    | GET    | 200 |  200 | json         |   58 | json | Grape .json                                    |
+: | /api/get_action.msgpack | msgpack | GET    | 200 |  200 | x-msgpack    |   53 | ?    | Grape .msgpack                                 |
+: | /api/put_action         |         | PUT    | 200 |  405 | x-msgpack    |   38 | ?    | Grape で PUT                                   |
+: | /api/delete_action      |         | DELETE | 200 |  405 | x-msgpack    |   44 | ?    | Grape で DELETE                                |
+: | /api/force_msgpack_rabl | msgpack | GET    | 200 |  200 | x-msgpack    |  123 | ?    | Grape + msgpack + rabl                         |
+: | /api/force_json_rabl    | json    | GET    | 200 |  200 | json         |  128 | json | Grape + json + rabl                            |
+: | /api/force_msgpack      | msgpack | GET    | 200 |  200 | x-msgpack    |   41 | ?    | Grape + msgpack                                |
+: | /api/force_json         | json    | GET    | 200 |  200 | json         |   43 | json | Grape + json                                   |
+: | /api/sub/hello          |         | GET    | 200 |  200 | x-msgpack    |   36 | ?    | Grape + namespace                              |
+: +-------------------------+---------+--------+-----+------+--------------+------+------+------------------------------------------------+
